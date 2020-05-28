@@ -12,11 +12,14 @@ palabras = ['manzana', 'gato', 'silla', 'cocina', 'fotografia', 'mesa', 'lapicer
 
 # Elegimos una palabra al azar
 pal_azar = random.choice(palabras)
+list_let = list(pal_azar)
 
 # Numero de lestras de la palabra elegida
 n_pal = len(pal_azar)
 
-adiv = '_ ' * n_pal # Para visualizar el numero de letras
+adiv = []
+for n in range(n_pal):
+    adiv.append("_")
 
 i = 0 # Iterador de intentos
 
@@ -26,11 +29,11 @@ while i < 6:
     print('Numero de intentos:', i)
     letra = input('Escribe una letra: ')
 
-    if letra in list(pal_azar):
+    if letra in list_let:
         print('Letra correcta')
         ind = pal_azar.index(letra)
-        pos = 2 * ind - 1
-        adiv = str((list(pal_azar)).pop(pos))
+        adiv[ind] = letra
+        
     else:
         print('Letra incorrecta')
         i += 1
