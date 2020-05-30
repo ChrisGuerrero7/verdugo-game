@@ -21,4 +21,4 @@ for i in range(len(lista)):
             rep[lista[i]].append(j)
             num_an.append(i)
 
-print(rep)
+print(rep.keys())
