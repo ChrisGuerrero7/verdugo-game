@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import random
 
 IMÁGENES_AHORCADO = ['''
@@ -78,17 +81,19 @@ def index_rep(lista):
 
 # Presentacion del juego
 print('''
-JUEGO DEL VERDUGO\n
-\nEn este juego solo tendremos 6 intentos para adivinar las letras de la palabra
-\nelegida al azar\n.
+V E R D U G O\n
+\nAdivina la palabra, solo tienes 6 intentos.
+\n
 ''')
 print(IMÁGENES_AHORCADO[0], "\n")
 
 # Lista de palabras que se adivinaran
-palabras = ['manzana', 'gato', 'silla', 'cocina', 'fotografia', 'mesa', 'lapicero', 'perro', 'durazno']
+fichero = open("palabras.csv","r")
+palabras = fichero.readlines()
 
 # Elegimos una palabra al azar
 pal_azar = random.choice(palabras)
+pal_azar = pal_azar.strip('\n')
 list_let = list(pal_azar) 
 
 # Obtenemos el dict con los valores repetidos y sus indices
@@ -105,7 +110,6 @@ i = 0 # Iterador de intentos
 # Iteramos el numero de intentos
 while i < 6:
     print(adiv)
-    print('Numero de intentos:', i)
     letra = input('Escribe una letra: ')
 
     if letra in list_let:
@@ -122,6 +126,9 @@ while i < 6:
         print(IMÁGENES_AHORCADO[i])
 
     if adiv == list_let:
-        print(pal_azar + "\n")
+        print("\nPalabra Adivinada: " + pal_azar + "\n")
         print("¡FELICITACIONES! Ganaste la partida.")
         break
+
+if i == 6:
+    print(f'¡PERDISTE! La palabra es: {pal_azar}')
