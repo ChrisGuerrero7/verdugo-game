@@ -130,5 +130,6 @@ while i < 6:
         print("¡FELICITACIONES! Ganaste la partida.")
         break
 
+# Mensaje al completar los 6 intentos
 if i == 6:
     print(f'¡PERDISTE! La palabra es: {pal_azar}')
